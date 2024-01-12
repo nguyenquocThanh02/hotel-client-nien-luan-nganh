@@ -1,18 +1,19 @@
 import {Col, Card} from "react-bootstrap";
-import {Link} from "reat-router-dom";
-
+import {Link} from "react-router-dom";
 
 function RoomCard({room}) {
+    
     return (  
-        <Col key={room?.id} className="mb-6" xs={12}>
+        <Col key={room?.id} className="mb-3" xs={12}>
             <Card>
-                <Card.Body className="d-flex flex-wrap align-items-center">
-                    <div className="flex-shrrink-0 mr-3 mb-3">
+                <Card.Body className="d-flex flex-wrap align-items-center hover-press">
+                    <div className="flex-shrink-0 mr-3" >
                         <Link to={`/booking/${room?.id}`}>
-                            <Card.Img className="room-card-img">
+                            <Card.Img className="room-card-img rounded-4"
                                 variant="top"
-                                src={`data:image/png;base64, ${room?.photo}`}
+                                src={`data:image/png;base64, ${room?.roomImage}`}
                                 alt="Room Image"
+                            >
                             </Card.Img>
                         </Link>
                     </div>
@@ -24,12 +25,12 @@ function RoomCard({room}) {
                             {room?.roomPrice}
                         </Card.Title>
                         <Card.Text>
-                            Some room information goes here for the guest to read through
+                            {room?.roomDetails}
                         </Card.Text>
                     </div>
                     <div className="flex-shrink mt-3">
-                        <Link to={`/booking/${room?.id}`} className="btn-hotel">
-                            Book it
+                        <Link to={`/booking/${room?.id}`}>
+                            <button className="btn-hotel p-3">Details</button>
                         </Link>
                     </div>
                 </Card.Body>

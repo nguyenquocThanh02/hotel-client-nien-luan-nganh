@@ -1,11 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo_my_hotel.png';
+import {useState} from 'react'
+
 function Header() {
+
+    const location = useLocation();
+    const [link, setLink] = useState(location.pathname);
+    
     return (  
         <header className="sticky-top p-0">
             <nav className="navbar navbar-expand-lg navbar-light margin-rl-8">
                 <div className="container-fluid bg-white border-header">
-                    <Link to={"/"} className="navbar-brand hover-press">
+                    <Link to={"/"} className="navbar-brand hover-press" onClick={()=>setLink('/')}>
                         <img src={logo} alt="logo" className='logo'/>
                         <strong className="text-color">MyHotel</strong>
                     </Link>
@@ -26,14 +32,32 @@ function Header() {
                                     <li><a className="dropdown-item">Something </a></li>
                                 </ul>
                             </li>
-                            <li className="nav-item ">
-                                <Link to={"/rooms"} className="nav-link active fw-bolder" aria-current="page">Rooms</Link>
+                            <li className="nav-item">
+                                <Link to={"/rooms"} 
+                                    className={`nav-link fw-bolder ${link == '/rooms' ? 'active' : ''}`} 
+                                    aria-current="page" 
+                                    onClick={()=>setLink('/rooms')}
+                                >
+                                    Rooms
+                                </Link>
                             </li>
-                            <li className="nav-item ">
-                                <Link to={"/bookings"} className="nav-link fw-bolder" >Bookings</Link>
+                            <li className="nav-item">
+                                <Link to={"/bookings"} 
+                                    className={`nav-link fw-bolder ${link == '/bookings' ? 'active' : ''}`} 
+                                    aria-current="page" 
+                                    onClick={()=>setLink('/bookings')}
+                                >
+                                    Bookings
+                                </Link>
                             </li>
-                            <li className="nav-item ">
-                                <Link to={"/help"} className="nav-link fw-bolder" >Help</Link>
+                            <li className="nav-item">
+                                <Link to={"/admin"} 
+                                    className={`nav-link fw-bolder ${link == '/admin' ? 'active' : ''}`} 
+                                    aria-current="page" 
+                                    onClick={()=>setLink('/admin')}
+                                >
+                                    Admin
+                                </Link>
                             </li>
                         </ul>
                         <form className="d-flex p-2">

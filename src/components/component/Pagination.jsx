@@ -16,21 +16,21 @@ function Pagination({currentPage, totalPages, onPageChange}) {
         }
     }
     return (  
-        <nav aria-label="Page navigation example">
-            <ul className="pagination">
+        <nav aria-label="Page navigation">
+            <ul className="pagination mb-0">
                 <li className="page-item">
                 <button onClick={handlePrevious} className="page-link" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
+                    <span aria-hidden="true" className="item-primary-color">&laquo;</span>
                 </button>
                 </li>
                 {arrayNumberPage.map((number, i)=>(
                     <li className={`page-item ${currentPage === number ? "active" : ""}`} key={i}>
-                        <button className="page-link" onClick={()=>onPageChange(number)}>{number}</button>
+                        <button className="page-link text-color" onClick={()=>onPageChange(number)}>{number}</button>
                     </li>
                 ))}
                 <li className="page-item">
                 <button onClick={handleNext} className="page-link" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
+                    <span aria-hidden="true" className="item-primary-color">&raquo;</span>
                 </button>
                 </li>
             </ul>

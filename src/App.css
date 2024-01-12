@@ -8,16 +8,23 @@
   --primary-color: #6B8E23;
 }
 
-.text-color{
-  color: var(--primary-color);
-}
 
 .bg-white{
   background-color: white;
 }
 
-.active{
+.active, .item-primary-color, .text-color {
   color: var(--primary-color)!important;
+}
+
+.bg-primary-color{
+  background-color: var(--primary-color);
+}
+
+.active>.page-link {
+  background-color: var(--primary-color)!important;
+  color: white !important;
+  border: none
 }
 
 /* layout */
@@ -30,7 +37,19 @@
 
 main {
   position: relative;
-  min-height: 300px;
+  min-height: 200px;
+}
+
+.header-admin{
+  height: 60px;
+  width: 100%;
+  background-color: #ccc;
+}
+
+.item-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* navbar */
@@ -53,7 +72,7 @@ main {
   background-color: var(--primary-color);
   width: 0;
   margin: 0 auto;
-  height: 2px;
+  height: 3px;
   transition: all .5s;
  }
  .navbar .navbar-nav .nav-item:hover::after{
@@ -67,6 +86,7 @@ main {
 .padding-rl-2{
   padding: 2px;
 }
+
 
 /* header */
 @media screen and (min-width: 768px) {
@@ -95,7 +115,7 @@ h5 {
   font-size: 18px;
 }
 
-
+/* btn */
 .btn-hotel {
   background-color: var(--primary-color);
   color: #fff;
@@ -103,20 +123,45 @@ h5 {
   outline: none;
   border: none;
 }
+.btn-hotel-border{
+  color: var(--primary-color);
+  background-color: #fff;
+  border-radius: 4px;
+  border: solid 1px var(--primary-color);
+  padding: 5px;
+}
 
-.hover-press:hover{
+.hover-press:hover, .btn-hotel:hover, .btn-hotel-border:hover{
   opacity: 0.7;
 }
 
 
-/* img */
+/* slide */
 .img-slider{
   width: 100vh;
   height: 50vh;
 }
+.h5-slide {
+  color: white; 
+  text-shadow: 2px 2px 4px #000; 
+  font-size: 30px;
+}
+.text-slide{
+  color: white; 
+  text-shadow: 2px 2px 4px #000; 
+  font-size: 18px;
+}
 
+/* img */
 .room-card-img{
   width: 100%;
-  max-width: 200px;
+  max-width: 260px;
+  height: 176px;
+}
+
+/* form */
+.form-hotel{
+  width: 50%;
   height: auto;
+  margin: auto;
 }

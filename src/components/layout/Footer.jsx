@@ -3,7 +3,7 @@ import logo from '../../assets/images/logo_my_hotel.png'
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-light py-4 footer mt-lg-5">
+    <footer className="bg-dark text-light py-4 footer mt-lg-4">
       <div className="container">
         <div className="row">
         

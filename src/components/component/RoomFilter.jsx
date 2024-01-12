@@ -1,3 +1,5 @@
+import {useState} from 'react'
+
 
 function RoomFilter({rooms, setFilterRooms}){
     const [filterType, setFilterType] = useState("");
@@ -6,7 +8,7 @@ function RoomFilter({rooms, setFilterRooms}){
         const selectedType = e.target.value
         setFilterType(selectedType)
         const filterRoom = rooms.filter((room) => 
-            room?.roomType.toLowerCase().include(selectedType.toLowerCase())
+            room?.roomType.toLowerCase().includes(selectedType.toLowerCase())
         )
         setFilterRooms(filterRoom)
     }
@@ -18,7 +20,7 @@ function RoomFilter({rooms, setFilterRooms}){
 
     const roomTypes = ["", ...new Set(rooms.map((room) => room.roomType))]
     return(
-        <div className="input-group mb-3">
+        <div className="input-group">
             <span className="input-group-text" id="type-filter">
                 Filter by type
             </span>
