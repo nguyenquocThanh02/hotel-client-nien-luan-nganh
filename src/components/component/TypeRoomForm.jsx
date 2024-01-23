@@ -11,6 +11,9 @@ function TypeRoomForm({handleInputChange, newRoom}) {
         getRoomTypes().then((data) => {
             setRoomTypes(data);
         })
+        if(roomTypes.length === 0){
+            setShowNewType(true)
+        }
     }, [])
 
     const handleAddNewType = () => {

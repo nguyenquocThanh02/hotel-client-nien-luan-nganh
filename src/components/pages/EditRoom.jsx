@@ -47,6 +47,7 @@ function EditRoom() {
             const theRoom = await getRoomById(id);
             setRoom(theRoom);
             setLinkImage('data:image/jpeg;base64,' + theRoom?.roomImage);
+            theRoom.roomImage = null;
         }catch(error){
             setError("Can't access to get exit room!!!")
         }
@@ -59,6 +60,7 @@ function EditRoom() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try{
+
             const result = await updateRoom(roomId, room);
             if(result === ""){
                 fetchRoom(roomId);
@@ -75,7 +77,7 @@ function EditRoom() {
     setTimeout(() => {
         setSuccess("")
         setError("")
-    }, 2000)
+    }, 3000)
 
     return (  
         <main>

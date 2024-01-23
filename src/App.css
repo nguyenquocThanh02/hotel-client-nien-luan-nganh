@@ -4,6 +4,7 @@
 }
 
 /* color */
+/* #fdfff7 */
 :root{
   --primary-color: #6B8E23;
 }
@@ -43,7 +44,9 @@ main {
 .header-admin{
   height: 60px;
   width: 100%;
-  background-color: #ccc;
+  background-color: #212529;
+  display: flex;
+  align-items: center;
 }
 
 .item-center{
@@ -154,14 +157,28 @@ h5 {
 
 /* img */
 .room-card-img{
-  width: 100%;
-  max-width: 260px;
+  min-width: 260px;
   height: 176px;
 }
 
 /* form */
 .form-hotel{
-  width: 50%;
+  width: 40%;
   height: auto;
   margin: auto;
+}
+
+/* form confirm booking*/
+.confirm-form-hotel{
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.confirm-infor-hotel{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 2;
+  list-style: none;
+  padding: 8px 16px;
 }

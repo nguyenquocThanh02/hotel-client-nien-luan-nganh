@@ -4,6 +4,7 @@ export const api = axios.create({
     baseURL: 'http://localhost:9090'
 })
 
+
 export async function addRoom(roomImage, roomType, roomPrice, roomDetails){
 	const formData = new FormData()
     formData.append("roomImage", roomImage)
@@ -29,6 +30,7 @@ export async function getRoomTypes() {
 export async function getRoomById(roomId){
 	try{
 		const response = await api.get(`/rooms/get/${roomId}`);
+		// console.log(response.data)
 		return response.data;
 	}catch (error){
 		throw new Error("Error to get room");
@@ -55,7 +57,7 @@ export async function deleteRoom(roomId){
 
 export async function updateRoom(roomId, room){
 	const formData = new FormData();
-	formData.append('roomImage', room.roomImage);
+	formData.append('roomImage', room?.roomImage);
 	formData.append('roomType', room.roomType);
 	formData.append('roomPrice', room.roomPrice);
 	formData.append('roomDetails', room.roomDetails);
@@ -67,3 +69,100 @@ export async function updateRoom(roomId, room){
 		throw new Error("Error update a rooms");
 	}
 }
+
+// user
+export async function login(infor){
+	const formData = new FormData()
+    formData.append("userEmail", infor?.userEmail)
+    formData.append("userPassword", infor?.userPassword)
+
+	try {
+        const response = await api.post("/users/login", formData)
+		// console.log(response);
+        return response;
+    } catch (error) {
+        if (error.response) {
+			// console.log(error.response);
+			return error.response;
+        }
+    }
+}
+
+export async function register(infor){
+	const formData = new FormData()
+    formData.append("userEmail", infor?.userEmail)
+    formData.append("userName", infor?.userName)
+    formData.append("userPassword", infor?.userPassword)
+    formData.append("userConfirmPassword", infor?.userConfirmPassword)
+
+	try {
+        const response = await api.post("/users/register", formData)
+		// console.log(response);
+        return response;
+    } catch (error) {
+        if (error.response) {
+			// console.log(error.response);
+			return error.response;
+        }
+    }
+}
+
+// admin
+export async function loginAdmin(infor){
+	const formData = new FormData()
+    formData.append("adminEmail", infor?.adminEmail)
+    formData.append("adminPassword", infor?.adminPassword)
+
+	try {
+        const response = await api.post("/admin/login", formData)
+		// console.log(response);
+        return response;
+    } catch (error) {
+        if (error.response) {
+			// console.log(error.response);
+			return error.response;
+        }
+    }
+}
+
+// Booking
+export async function createBooking(roomId, userEmail, booking){
+	try{
+		const result = await api.post(`/booking/${roomId}/by/${userEmail}`, booking);
+		// console.log(result.data);
+		return result.data;
+	} catch (error) {
+		if(error.response){
+			// console.log(error.response)
+			return error.response;
+		}
+	}
+}
+
+export async function getAllBookeds(){
+	try{
+		const result = await api.get("/booking/get/all/booked");
+		return result.data;
+	}catch (error) {
+		return error.response;
+	}
+}
+
+export async function getBookedsOfUser(userEmail){
+	try{
+		const result = await api.get(`/booking/get/booked/of/${userEmail}`);
+		return result.data;
+	}catch (error) {
+		return error.response;
+	}
+}
+
+export async function cancelBooked(bookedId){
+	try{
+		const result = await api.delete(`/booking/delete/booked/${bookedId}`);
+		return result.data;
+	}catch (error) {
+		return error.response;
+	}
+}
+

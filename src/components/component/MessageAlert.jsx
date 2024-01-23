@@ -8,8 +8,8 @@ function MessageAlert({success = null, error = null}) {
                 </div>
             )}
             {error && (
-                <div className="alert alert-error" role="alert">
-                    {error} !
+                <div className="floating-alert alert alert-danger">
+                    <strong>Error:</strong> {error}!
                 </div>
             )}
             
