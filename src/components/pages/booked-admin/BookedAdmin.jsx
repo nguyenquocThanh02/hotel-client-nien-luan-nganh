@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import AdminHeader from "../../layout/AdminHeader";
-import { getAllBookeds } from "../../service/AxiosFunction";
+import { createBill, getAllBookeds } from "../../service/AxiosFunction";
 import {Link} from 'react-router-dom'
 import MessageAlert from "../../component/MessageAlert";
 import Pagination from "../../component/Pagination";
 import moment from "moment";
 
 function BookedAdmin() {
+
+    const adminEmail = localStorage.getItem('email');
+
     const [bookeds, setBookeds] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [filterBooked, setFilterBooked] = useState([{id: ""}]);
@@ -24,12 +27,21 @@ function BookedAdmin() {
             setBookeds(data);
             setIsLoading(false);
         }).catch((error)=>{
+            setBookeds([])
+            setFilterBooked([])
+            setError(error.data);
             setIsLoading(false);
-            return(
-                <main>Error : {error.message}</main>
-            )
         })
     }, [success])
+
+
+    if(error){
+        return (
+            <main>
+                <div className='text-danger item-center mt-4'>Error: {error}</div>
+            </main>
+        )
+    }
 
     if(isLoading){
         return (
@@ -57,20 +69,25 @@ function BookedAdmin() {
         return NumberOfDays * roomPrice;
     }
 
-    // const handleCreateBill = async (booked){
-    //     const bill = {
-    //         totalPrice: handlePrice(booked?.room?.roomPrice, booked?.checkIn, booked?.checkOut),
-            
-    //     }
-    //     const result = await createBill(idAdmin, bill);
-    //     navigate("/...")
-    // }
+    const handleCreateBill = async (booked) => {
+        const bill = {
+            totalPrice: handlePrice(booked?.room?.roomPrice, booked?.checkIn, booked?.checkOut)
+        }
+        const result = await createBill(booked?.id, adminEmail, bill);
+        if(result.status == null){
+            setSuccess(result);
+        }else{
+            setError(result.data);
+        }
+    }
 
     const renderBooked = () => {
         const startPoint = (currentPage - 1) * bookedsPerPage;
         const endPoint = startPoint + bookedsPerPage;
         const bookedRender = filterBooked.slice(startPoint, endPoint)
-        return bookedRender.map((booked, i)=>(
+        console.log('bn');
+        console.log(bookedRender.length)
+        return bookedRender && bookedRender.length>0 && bookedRender.map((booked, i)=>(
             <tr key={i}>
                 <td scope="row">{i+1}</td>
                 <td>{booked?.bookingConfirmCode}</td>
@@ -107,7 +124,7 @@ function BookedAdmin() {
     setTimeout(()=>{
         setSuccess("");
         setError("");
-    }, 1000)
+    }, 2000)
     return (  
         <main>
             <AdminHeader/>

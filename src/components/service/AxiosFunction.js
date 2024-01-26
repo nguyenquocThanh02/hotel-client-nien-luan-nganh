@@ -144,7 +144,7 @@ export async function getAllBookeds(){
 		const result = await api.get("/booking/get/all/booked");
 		return result.data;
 	}catch (error) {
-		return error.response;
+		throw new Error("Error fetching bookeds")
 	}
 }
 
@@ -166,3 +166,36 @@ export async function cancelBooked(bookedId){
 	}
 }
 
+// bill
+export async function createBill(bookedId, adminEmail, bill){
+	try{
+		const result = await api.post(`/bill/create/${bookedId}/by/${adminEmail}`, bill);
+		return result.data;
+	}catch (error) {
+		if(error.response){
+			// console.log(error.response)
+			return error.response;
+		}
+	}
+}
+
+export async function getAllReceipts(){
+	try{
+		const result = await api.get("/bill/get/all");
+		return result.data;
+	}catch (error) {
+		if(error.response){
+			// console.log(error.response)
+			throw new Error("Error fetching bill")
+		}
+	}
+}
+
+export async function completeBill(billId){
+	try{
+		const result = await api.put(`/bill/complete/${billId}`);
+		return result.data;
+	}catch (error) {
+		return error.response;
+	}
+}
