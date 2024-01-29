@@ -1,17 +1,16 @@
 import moment from "moment";
 
-
 function ConfirmBooking({booking, roomPrice, handleSubmit}) {
     const checkInDate = moment(booking.checkIn);
     const checkOutDate = moment(booking.checkOut);
 
-    const handlePrice = () => {
+    const handlePrice = () => {        
         const NumberOfDays = checkOutDate.diff(checkInDate, 'days');
         return NumberOfDays * roomPrice > 0 ? NumberOfDays * roomPrice : '0';
     }
 
     return (  
-        <div className="confirm-form-hotel">
+        <div className="confirm-form-hotel bg-white">
             <h5 className="text-center mt-2 text-color">Confirm booking room</h5>
             <ul className="confirm-infor-hotel">
                 <li>FullName: {booking.userName}</li>

@@ -31,7 +31,7 @@ function Header() {
     return (  
         <header className="sticky-top p-0">
             <nav className="navbar navbar-expand-lg navbar-light margin-rl-8">
-                <div className="container-fluid bg-white border-header">
+                <div className="container-fluid bg-white border-header shadow-sm">
                     <Link to={"/"} className="navbar-brand hover-press" onClick={()=>setLink('/')}>
                         <img src={logo} alt="logo" className='logo'/>
                         <strong className="text-color">MyHotel</strong>

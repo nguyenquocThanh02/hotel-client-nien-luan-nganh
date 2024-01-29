@@ -49,7 +49,7 @@ function Login() {
             {success && (<MessageAlert success={success}/>)}
             {error && (<MessageAlert error={error}/>)}
 
-            <form onSubmit={handleSubmit} className="form-hotel border-1 border p-2 rounded-2">
+            <form onSubmit={handleSubmit} className="form-hotel border-1 border p-2 rounded-2 mt-3">
                 <h5 className="text-center text-color">Login</h5>
                 
                 <div className="mb-3">

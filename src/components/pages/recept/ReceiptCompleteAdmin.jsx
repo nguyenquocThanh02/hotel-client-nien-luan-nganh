@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-// import RoomFilter from "../component/RoomFilter";
 import AdminHeader from "../../layout/AdminHeader";
-import { getAllReceipts, completeBill } from "../../service/AxiosFunction";
+import { getAllReceipts, completeBill, getAllReceiptsPayment, unCompleteBill } from "../../service/AxiosFunction";
 import Pagination from "../../component/Pagination";
 import { Link } from "react-router-dom";
 import MessageAlert from "../../component/MessageAlert";
 import ClearFilter from "../../component/ClearFilter";
 import DateFilter from "../../component/DateFilter";
-
-function ReceiptAdmin() {
+import {fixDate} from "../../../components/service/functionCommon";
+import moment from "moment";
+function ReceiptCompleteAdmin() {
 
     const [receipts, setReceipts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +22,7 @@ function ReceiptAdmin() {
     useEffect(()=>{
         setIsLoading(true);
 
-        getAllReceipts().then((data)=>{
+        getAllReceiptsPayment().then((data)=>{
             setFilterReceipt(data);
             setReceipts(data);
             setIsLoading(false);
@@ -66,25 +66,27 @@ function ReceiptAdmin() {
                 <td>{receipt?.booked?.bookingConfirmCode}</td>
                 <td>{receipt?.booked?.userEmail}</td>
                 <td>{receipt?.admin?.adminName}</td>
-                <td>{!receipt?.paid ? 'Wait payment' : 'Complete'}</td>
+                <td>{fixDate(receipt?.timePrintBill).format("YYYY-MM-DD HH:mm:ss")}</td>
                 <td>
+                    {fixDate(receipt?.timePrintBill).format("YYYY-MM-DD") == 
+                    moment().format("YYYY-MM-DD") &&
                     <button 
-                     onClick={() => handlePrintBill(receipt?.id)}
+                     onClick={() => handleUnPrintBill(receipt?.id)}
                      className="btn-hotel-border p-1"
                     >
-                        Print Bill
-                    </button>
+                        Undo
+                    </button>}
                 </td>
             </tr>
         )) 
     }
 
-    const handlePrintBill = async (receiptId) => {
-        const result = await completeBill(receiptId);
+    const handleUnPrintBill = async (receiptId) => {
+        const result = await unCompleteBill(receiptId);
         if(result.status == null){
-            setSuccess("Complete bill successfully");
+            setSuccess("Un complete bill successfully");
         }else{
-            setError("Can not complete bill");
+            setError("Can not un complete bill");
         }
     }
 
@@ -103,7 +105,7 @@ function ReceiptAdmin() {
                 <MessageAlert error={error}/>
             )}
             <div className="d-flex flex-column align-items-center">
-                <h5 className="mt-3 mb-3 text-color">Manage Receipts</h5>
+                <h5 className="mt-3 mb-3 text-color">Completed Receipts</h5>
                 <div className="d-flex justify-content-between w-100 align-items-center p-1 bg-light mb-3">
                     <DateFilter data={receipts} setState={setFilterReceipt} />
                     <ClearFilter data={receipts} setState={setFilterReceipt}/>
@@ -121,7 +123,7 @@ function ReceiptAdmin() {
                             <th scope="col">Booked Id</th>
                             <th scope="col">User</th>
                             <th scope="col">Admin</th>
-                            <th scope="col">Payment</th>
+                            <th scope="col">Date Payment</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -140,4 +142,4 @@ function ReceiptAdmin() {
     );
 }
 
-export default ReceiptAdmin;
+export default ReceiptCompleteAdmin;

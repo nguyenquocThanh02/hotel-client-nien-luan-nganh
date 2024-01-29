@@ -15,6 +15,7 @@ import Booked from './components/pages/Booked';
 import RoomBooked from './components/pages/room/RoomBooked';
 import BookedAdmin from './components/pages/booked-admin/BookedAdmin';
 import ReceiptAdmin from './components/pages/recept/ReceiptAdmin';
+import ReceiptCompleteAdmin from './components/pages/recept/ReceiptCompleteAdmin';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
           <Route path='/login/admin' element={<LoginAdmin/>}/> 
           <Route path='/admin/booked' element={<BookedAdmin/>}/> 
           <Route path='/admin/receipt' element={<ReceiptAdmin/>}/> 
+          <Route path='/admin/receipt-completed' element={<ReceiptCompleteAdmin/>}/> 
 
 
         </Routes>

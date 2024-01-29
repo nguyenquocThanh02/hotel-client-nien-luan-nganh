@@ -3,6 +3,7 @@ import { getAllRooms } from '../service/AxiosFunction';
 import RoomFilter  from '../component/RoomFilter';
 import Pagination from '../component/Pagination';
 import RoomCard from '../component/RoomCard'
+import IntroduceHotel from '../component/IntroduceHotel';
 function Room() {
 
     const [rooms, setRooms] = useState([]);
@@ -59,7 +60,7 @@ function Room() {
     }
 
     return (  
-        <main className='container'>
+        <main className='container mt-4'>
             <div className='row'>
                 <div className='col col-12 mb-2'>
                     <RoomFilter rooms={rooms} setFilterRooms={setFilterRooms}/>
@@ -75,6 +76,7 @@ function Room() {
                     onPageChange={onPageChange}
                 />
             </div>
+
         </main>
     );
 }

@@ -29,11 +29,11 @@ function FormBooking({booking, setBooking, setError}) {
     }
 
     return (  
-        <form  className="border-1 border p-2 rounded-2">
-            <h5 className="text-center text-color">Enter your mation</h5>
+        <form  className="border-1 border p-2 bg-white">
+            <h5 className="text-center text-color">Enter your information</h5>
             
             <div className="mb-3">
-                <label htmlFor="userName" className="form-label">Fullname: </label>
+                <label htmlFor="userName" className="form-label">Full name: </label>
                 <input required  value={booking?.userName} onChange={handleInputChange} type="text" className="form-control" name="userName"/>
             </div>
             <div className="mb-3">
@@ -57,8 +57,6 @@ function FormBooking({booking, setBooking, setError}) {
                     </div>
                 </div>
             </div>
-            
-            {/* <button type="submit" className="btn-hotel p-2">Complete</button> */}
             
         </form>
     );

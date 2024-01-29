@@ -191,9 +191,35 @@ export async function getAllReceipts(){
 	}
 }
 
+export async function getAllReceiptsPayment(){
+	try{
+		const result = await api.get("/bill/get/all", {
+			params: {
+				param: true
+			}
+		});
+		return result.data;
+	}catch (error) {
+		if(error.response){
+			// console.log(error.response)
+			throw new Error("Error fetching bill")
+		}
+	}
+}
+
+
 export async function completeBill(billId){
 	try{
 		const result = await api.put(`/bill/complete/${billId}`);
+		return result.data;
+	}catch (error) {
+		return error.response;
+	}
+}
+
+export async function unCompleteBill(billId){
+	try{
+		const result = await api.put(`/bill/un/complete/${billId}`);
 		return result.data;
 	}catch (error) {
 		return error.response;

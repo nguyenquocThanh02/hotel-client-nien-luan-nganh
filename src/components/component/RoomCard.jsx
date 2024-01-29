@@ -9,10 +9,12 @@ function RoomCard({room}) {
                 <Card.Body className="d-flex flex-wrap align-items-center hover-press">
                     <div className="flex-shrink-0 mr-3" >
                         <Link to={`/booking/${room?.id}`}>
-                            <Card.Img className="room-card-img rounded-4"
+                            <Card.Img 
                                 variant="top"
                                 src={`data:image/png;base64, ${room?.roomImage}`}
                                 alt="Room Image"
+                                className="w-100 rounded-3 shadow"
+								style={{ maxWidth: "260px"}}
                             >
                             </Card.Img>
                         </Link>
@@ -22,7 +24,7 @@ function RoomCard({room}) {
                             {room?.roomType}
                         </Card.Title>
                         <Card.Title className="text-color">
-                            {room?.roomPrice}
+                            {room?.roomPrice} $/night
                         </Card.Title>
                         <Card.Text>
                             {room?.roomDetails}
@@ -30,7 +32,7 @@ function RoomCard({room}) {
                     </div>
                     <div className="flex-shrink mt-3">
                         <Link to={`/booking/${room?.id}`}>
-                            <button className="btn-hotel p-3">Details</button>
+                            <button className="btn-hotel p-3">Book now</button>
                         </Link>
                     </div>
                 </Card.Body>

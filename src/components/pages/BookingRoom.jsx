@@ -7,6 +7,7 @@ import ConfirmBooking from './booking/ConfirmBooking';
 import FormBooking from './booking/FormBooking';
 import moment from 'moment';
 import RoomDetail from './room/RoomDetail';
+import RoomCarousel from '../component/RoomCarousel';
 
 function BookingRoom() {
 
@@ -60,7 +61,7 @@ function BookingRoom() {
             {success && (<MessageAlert success={success}/>)}
             {error && (<MessageAlert error={error}/>)}
 
-            <div className="container">
+            <div className="container bg-light shadow p-2">
                 <div className="row">
                     <div className="col col-lg-4 col-md-12">
                        <RoomDetail room={room}/>
@@ -73,6 +74,8 @@ function BookingRoom() {
                     </div>
                 </div>
             </div>
+
+            <RoomCarousel/>
         </main>
     );
 }
