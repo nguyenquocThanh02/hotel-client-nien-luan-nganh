@@ -26,7 +26,7 @@ function RoomCard({room}) {
                         <Card.Title className="text-color">
                             {room?.roomPrice} $/night
                         </Card.Title>
-                        <Card.Text>
+                        <Card.Text >
                             {room?.roomDetails}
                         </Card.Text>
                     </div>

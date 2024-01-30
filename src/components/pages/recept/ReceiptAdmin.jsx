@@ -103,7 +103,7 @@ function ReceiptAdmin() {
                 <MessageAlert error={error}/>
             )}
             <div className="d-flex flex-column align-items-center">
-                <h5 className="mt-3 mb-3 text-color">Manage Receipts</h5>
+                <h5 className="mt-3 mb-3 text-color">Await Receipts</h5>
                 <div className="d-flex justify-content-between w-100 align-items-center p-1 bg-light mb-3">
                     <DateFilter data={receipts} setState={setFilterReceipt} />
                     <ClearFilter data={receipts} setState={setFilterReceipt}/>

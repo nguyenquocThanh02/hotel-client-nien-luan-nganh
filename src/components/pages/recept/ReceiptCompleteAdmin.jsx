@@ -106,6 +106,10 @@ function ReceiptCompleteAdmin() {
             )}
             <div className="d-flex flex-column align-items-center">
                 <h5 className="mt-3 mb-3 text-color">Completed Receipts</h5>
+                <div className="w-100 d-flex justify-content-end mb-2 me-3">
+                    <Link to={"/admin/report"}>Revenue Report</Link>
+                </div>
+               
                 <div className="d-flex justify-content-between w-100 align-items-center p-1 bg-light mb-3">
                     <DateFilter data={receipts} setState={setFilterReceipt} />
                     <ClearFilter data={receipts} setState={setFilterReceipt}/>

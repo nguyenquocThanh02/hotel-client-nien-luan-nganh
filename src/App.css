@@ -15,7 +15,7 @@
   background-color: white;
 }
 
-.active, .item-primary-color, .text-color {
+.active, .item-primary-color, .text-color, .hover-color:hover {
   color: var(--primary-color)!important;
 }
 

@@ -225,3 +225,19 @@ export async function unCompleteBill(billId){
 		return error.response;
 	}
 }
+
+export async function getReport(selectedMonth){
+	try{
+		const result = await api.get("/bill/get/report", {
+            params: {
+                selectedMonth: selectedMonth,
+            },
+        });
+		return result.data;
+	}catch (error) {
+		if(error.response){
+			// console.log(error.response)
+			throw new Error("Error fetching bill")
+		}
+	}
+}

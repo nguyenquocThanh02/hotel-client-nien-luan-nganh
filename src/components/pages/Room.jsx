@@ -3,7 +3,8 @@ import { getAllRooms } from '../service/AxiosFunction';
 import RoomFilter  from '../component/RoomFilter';
 import Pagination from '../component/Pagination';
 import RoomCard from '../component/RoomCard'
-import IntroduceHotel from '../component/IntroduceHotel';
+import DateFilter from '../component/DateFilter';
+import ClearFilter from '../component/ClearFilter';
 function Room() {
 
     const [rooms, setRooms] = useState([]);
@@ -62,8 +63,14 @@ function Room() {
     return (  
         <main className='container mt-4'>
             <div className='row'>
-                <div className='col col-12 mb-2'>
+                <div className='col col-6 mb-2'>
+                    <DateFilter data={rooms} setState={setFilterRooms}/>
+                </div>
+                <div className='col col-4 mb-2'>
                     <RoomFilter rooms={rooms} setFilterRooms={setFilterRooms}/>
+                </div>
+                <div className='col col-2 mb-2'>
+                    <ClearFilter data={rooms} setState={setFilterRooms}/>
                 </div>
             </div>
             <div className='row'>

@@ -7,7 +7,7 @@ function ClearFilter({data, setState}) {
     }
     return (  
         <div>
-            <button className="btn-hotel-border p-2" onClick={handleClearFilter}>Clear Filter</button>
+            <button className="btn-hotel-border p-2 w-100" onClick={handleClearFilter}>Clear Filter</button>
         </div>
     );
 }
