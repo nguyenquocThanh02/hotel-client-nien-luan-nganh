@@ -33,6 +33,7 @@ function BookingRoom() {
     const [booking, setBooking] = useState(initialBooking);
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(()=>{
         getRoomById(roomId).then((data)=>{
@@ -42,11 +43,15 @@ function BookingRoom() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+
+        setIsLoading(true);
         const result = await createBooking(roomId, theUserEmail, booking);
         if(result.status === undefined){
             setSuccess(result);
             setError("");
+            setIsLoading(false);
         }else{
+            setIsLoading(false);
             setError(result.data.message);
         }
     }
@@ -70,7 +75,7 @@ function BookingRoom() {
                         <FormBooking booking={booking} setBooking={setBooking} setError={setError}/>
                     </div>
                     <div className="col col-lg-4 col-md-12">
-                        <ConfirmBooking booking={booking} roomPrice={room?.roomPrice} handleSubmit={handleSubmit}/>
+                        <ConfirmBooking booking={booking} roomPrice={room?.roomPrice} handleSubmit={handleSubmit} isLoading={isLoading}/>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import moment from "moment";
 
-function ConfirmBooking({booking, roomPrice, handleSubmit}) {
+function ConfirmBooking({booking, roomPrice, handleSubmit, isLoading}) {
     const checkInDate = moment(booking.checkIn);
     const checkOutDate = moment(booking.checkOut);
 
@@ -19,7 +19,14 @@ function ConfirmBooking({booking, roomPrice, handleSubmit}) {
                 <li>Check in: {checkInDate.format('DD/MM/YYYY')}</li>
                 <li>Check out: {checkOutDate.format('DD/MM/YYYY')}</li>
                 <li>Total: {handlePrice()}</li>
-                <button onClick={handleSubmit} className="w-100 btn-hotel-border p-0 mt-2">Confirm</button>
+                {isLoading ? (
+                    
+                    <button className="btn-hotel-border w-100 p-0 mt-2" type="button" disabled>
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Booking...
+                    </button>       
+                    ) : (<button onClick={handleSubmit} className="w-100 btn-hotel-border p-0 mt-2">Confirm</button>)
+                }
             </ul>
         </div>
     );
