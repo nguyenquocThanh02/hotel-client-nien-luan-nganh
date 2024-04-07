@@ -241,3 +241,19 @@ export async function getReport(selectedMonth){
 		}
 	}
 }
+
+export async function getRevenueInYear(selectedYear){
+	try{
+		const result = await api.get("/bill/get/revenueInYear", {
+            params: {
+                selectedYear: selectedYear,
+            },
+        });
+		return result.data;
+	}catch (error) {
+		if(error.response){
+			// console.log(error.response)
+			throw new Error("Error fetching revenue")
+		}
+	}
+}
