@@ -107,6 +107,16 @@ export async function register(infor){
     }
 }
 
+export async function getHistoryActions(userEmail){
+	try{
+		const result = await api.get(`/history/of/${userEmail}`);
+		return result.data;
+	}catch (error) {
+		return error.response;
+	}
+}
+
+
 // admin
 export async function loginAdmin(infor){
 	const formData = new FormData()

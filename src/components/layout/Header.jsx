@@ -25,7 +25,7 @@ function Header() {
         }
         setUserName("");
         setAdminRole("");
-        // navigate("/");
+        navigate('/');
     }
 
     return (  
@@ -47,10 +47,13 @@ function Header() {
                                     {userName ? (userName) : 'Account'}
                                 </Link>
                                 <ul className="dropdown-menu" tabIndex={-1} aria-labelledby="navbarDropdown">
-                                    <li><Link to={"/login"} className="dropdown-item">Login</Link></li>
-                                    <li><Link to={"/register"} className="dropdown-item">Register</Link></li>
+                                    {!userName ? <><li><Link to={"/login"} className="dropdown-item">Login</Link></li>
+                                    <li><Link to={"/register"} className="dropdown-item">Register</Link></li></>
+                                    : 
+                                    <><li><Link to={"/history"} className="dropdown-item">History action</Link></li>
                                     <li><hr className="dropdown-divider" /></li>
-                                    <li><Link className="dropdown-item" onClick={handleLogout}>Logout</Link></li>
+                                    <li><span className="dropdown-item" onClick={handleLogout}>Logout</span></li></>
+                                    }
                                 </ul>
                             </li>
                             <li className="nav-item">
@@ -62,7 +65,7 @@ function Header() {
                                     Rooms
                                 </Link>
                             </li>
-                            {!adminRole && <li className="nav-item">
+                            {!adminRole && userName && <li className="nav-item">
                                 <Link to={"/bookeds"} 
                                     className={`nav-link fw-bolder ${link == '/bookings' ? 'active' : ''}`} 
                                     aria-current="page" 

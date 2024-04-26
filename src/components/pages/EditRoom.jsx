@@ -82,7 +82,7 @@ function EditRoom() {
     return (  
         <main>
             <AdminHeader/>
-            <Navigate/>
+            <Navigate path='home/admin/update-room'/>
 
             {success && (<MessageAlert success={success}/>)}
             {error && (<MessageAlert error={error}/>)}

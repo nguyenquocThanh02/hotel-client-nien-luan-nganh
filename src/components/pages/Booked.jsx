@@ -52,7 +52,7 @@ function Booked() {
             <div className="Container row m-1 bg-light shadow p-2">
                 {bookeds && bookeds.length > 0 && bookeds.map((booked, i)=>(
                     <div className="col col-lg-4 col-md-12 mb-2" key={i}>
-                        <div className="confirm-form-hotel bg-white">
+                        <div className="shadow border rounded bg-white">
                             <h5 className="text-center mt-2">My booked {i+1}</h5>
                             <p className='text-center fw-light fst-italic m-0'>You can check in to the room after 2:00 PM.</p>
 

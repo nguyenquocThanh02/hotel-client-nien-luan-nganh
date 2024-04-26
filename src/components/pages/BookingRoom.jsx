@@ -66,7 +66,7 @@ function BookingRoom() {
             {success && (<MessageAlert success={success}/>)}
             {error && (<MessageAlert error={error}/>)}
 
-            <div className="container bg-light shadow p-2">
+            <div className="container bg-light shadow p-2 mt-2">
                 <div className="row">
                     <div className="col col-lg-4 col-md-12">
                        <RoomDetail room={room}/>

@@ -63,7 +63,7 @@ function AddRoom() {
     return (  
         <main>
             <AdminHeader/>
-            <Navigate/>
+            <Navigate path='home/admin/add-room'/>
 
             {success && (<MessageAlert success={success}/>)}
             {error && (<MessageAlert error={error}/>)}

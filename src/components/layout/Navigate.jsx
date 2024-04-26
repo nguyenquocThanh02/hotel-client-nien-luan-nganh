@@ -1,9 +1,9 @@
+import React from 'react';
 
-
-function Navigate() {
+function Navigate({path}) {
     return (  
         <>
-            Home/Admin/...
+            <span className='badge text-bg-light p-2 mt-1 shadow-sm'>{path}</span>
         </>
     );
 }

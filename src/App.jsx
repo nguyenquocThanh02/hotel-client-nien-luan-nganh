@@ -10,6 +10,7 @@ import EditRoom from './components/pages/EditRoom';
 import BookingRoom from './components/pages/BookingRoom';
 import Login from './components/pages/user/Login';
 import Register from './components/pages/user/Register';
+import HistoryAction from './components/pages/user/HistoryAction';
 import LoginAdmin from './components/pages/admin/LoginAdmin';
 import Booked from './components/pages/Booked';
 import RoomBooked from './components/pages/room/RoomBooked';
@@ -36,6 +37,7 @@ function App() {
           {/* user */}
           <Route path='/login' element={<Login/>}/> 
           <Route path='/register' element={<Register/>}/> 
+          <Route path='/history' element={<HistoryAction/>}/> 
 
           {/* admin */}
           <Route path='/admin/room' element={<Admin/>}/>
